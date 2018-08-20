@@ -1,0 +1,19 @@
+.select2-item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.select2-item-list > li {
+  border-top: 1px solid #aaa;
+  height: 20px;
+}
+
+.items-not-found {
+  color: #333;
+  margin: 0 0 3px;
+  text-align: center;
+  width: 100%;
+}
