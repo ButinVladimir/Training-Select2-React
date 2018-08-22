@@ -1,10 +1,14 @@
 import React from 'react';
 import Select2 from './select2';
-import getData from './data';
+import getDataLocal from './get-data-local';
+import getDataRemote from './get-data-remote';
 
 function App() {
   return (
-    <div><Select2 getData={getData} /></div>
+    <div>
+      <Select2 getData={getDataLocal} />
+      <Select2 getData={getDataRemote} />
+    </div>
   );
 }
 

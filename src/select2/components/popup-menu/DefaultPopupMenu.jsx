@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-export default function DefaultPopupMenu({
-  inputTextField,
-  itemsList,
-  onBlur,
-}) {
+export default function DefaultPopupMenu({ inputTextField, itemsList }) {
   return (
-    <div className="select2-popup-menu" onBlur={onBlur}>
+    <div className="select2-popup-menu">
       <div className="input-text-container">
         {inputTextField}
       </div>
@@ -22,5 +18,4 @@ export default function DefaultPopupMenu({
 DefaultPopupMenu.propTypes = {
   inputTextField: PropTypes.element.isRequired,
   itemsList: PropTypes.element.isRequired,
-  onBlur: PropTypes.func.isRequired,
 };

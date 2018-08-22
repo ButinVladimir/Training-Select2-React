@@ -7,38 +7,31 @@ const convertItem = (item, onChange) => ({
   key: item.value,
   value: item.value,
   name: item.name,
+  checked: item.checked,
   onChange,
 });
 
-export default function DefaultItemsList({ selectedValues, items, onChange }) {
-  const checkedItems = items
-    .filter(item => selectedValues.some(sv => sv === item.value))
-    .map(item => (
-      <ListItem
-        {...convertItem(item, onChange)}
-        checked
-      />
-    ));
-  const uncheckedItems = items
-    .filter(item => !selectedValues.some(sv => sv === item.value))
+export default function DefaultItemsList({
+  items,
+  onChange,
+}) {
+  const convertedItems = items
     .map(item => (
       <ListItem
         {...convertItem(item, onChange)}
       />
     ));
-
-  const allItems = checkedItems.concat(uncheckedItems);
 
   return (
     <Fragment>
       {
-        allItems.length > 0 && (
+        convertedItems.length > 0 && (
         <ul className="select2-item-list">
-          {allItems}
+          {convertedItems}
         </ul>)
       }
       {
-        allItems.length === 0 && (
+        convertedItems.length === 0 && (
         <div className="items-not-found">No matching items found</div>)
       }
     </Fragment>
@@ -46,9 +39,8 @@ export default function DefaultItemsList({ selectedValues, items, onChange }) {
 }
 
 DefaultItemsList.propTypes = {
-  selectedValues: PropTypes.arrayOf(PropTypes.number).isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.number.isRequired,
+    value: PropTypes.any.isRequired,
     name: PropTypes.string.isRequired,
   })).isRequired,
   onChange: PropTypes.func.isRequired,

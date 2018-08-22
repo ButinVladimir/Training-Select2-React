@@ -20,7 +20,7 @@ export default function ListItem({
 }
 
 ListItem.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.any.isRequired,
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,

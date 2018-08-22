@@ -22,7 +22,7 @@ const data = new Map([
   [27, 'Option 27'],
 ]);
 
-export default function getData(query) {
+export default function getDataLocal(query) {
   const upperQuery = query.toUpperCase();
 
   return new Promise((resolve) => {

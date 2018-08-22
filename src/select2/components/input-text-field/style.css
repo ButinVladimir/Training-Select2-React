@@ -3,4 +3,6 @@
   border-radius:  7px;
   color: #333;
   padding: 3px;
+  width: calc(100% - 8px);
+  min-width: 100px;
 }

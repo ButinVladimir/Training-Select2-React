@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import Select2Container from './Select2Container';
-import defaultPrepareSelectedText from './default-prepare-selected-text';
+import defaultPrepareSelectedText from './helpers/default-prepare-selected-text';
 import DefaultSelectedText from './components/selected-text/DefaultSelectedText';
 import DefaultPopupMenu from './components/popup-menu/DefaultPopupMenu';
 import DefaultInputTextField from './components/input-text-field/DefaultInputTextField';
 import DefaultItemsList from './components/items-list/DefaultItemsList';
+import SelectedValue from './helpers/selected-value';
+import sortFunc from './helpers/sort-func';
 
 export default class Select2 extends Component {
   constructor(props) {
@@ -19,10 +21,25 @@ export default class Select2 extends Component {
       valueNameMap: new Map(),
     };
 
+    this.onClickOutsideContainer = this.onClickOutsideContainer.bind(this);
     this.onClickSelectedText = this.onClickSelectedText.bind(this);
     this.onSearchQueryChange = this.onSearchQueryChange.bind(this);
     this.onChangeItemSelection = this.onChangeItemSelection.bind(this);
-    this.onBlur = this.onBlur.bind(this);
+
+    this.containerRef = createRef();
+    this.throttleTimeout = null;
+    this.queryId = 0;
+  }
+
+  componentDidMount() {
+    window.addEventListener('click', this.onClickOutsideContainer);
+  }
+
+  componentWillUnmount() {
+    if (this.throttleTimeout) {
+      clearTimeout(this.throttleTimeout);
+    }
+    window.removeEventListener('click', this.onClickOutsideContainer);
   }
 
   onClickSelectedText() {
@@ -34,18 +51,29 @@ export default class Select2 extends Component {
   }
 
   async onSearchQueryChange(event) {
-    const { getData } = this.props;
     const searchQuery = event.target.value;
 
-    const foundItems = searchQuery ? await getData(searchQuery) : this.restoreSelectedItems();
-    this.setState({
-      searchQuery,
-      foundItems,
-    });
+    if (this.throttleTimeout) {
+      clearTimeout(this.throttleTimeout);
+    }
+    const newQueryId = Date.now();
+    this.queryId = newQueryId;
+
+    if (searchQuery) {
+      this.setState({ searchQuery });
+
+      this.throttleTimeout = setTimeout(async () => {
+        if (this.queryId === newQueryId) {
+          this.setState({ foundItems: await this.getAndSortData(searchQuery) });
+        }
+      }, 1000);
+    } else {
+      this.setState({ searchQuery, foundItems: this.restoreSelectedItems() });
+    }
   }
 
   onChangeItemSelection(value, name) {
-    const { selectedValues, valueNameMap } = this.state;
+    const { selectedValues, valueNameMap, foundItems } = this.state;
     const newValueNameMap = new Map(valueNameMap);
     let newSelectedValues;
 
@@ -57,17 +85,47 @@ export default class Select2 extends Component {
       newValueNameMap.set(value, name);
     }
 
-    this.setState({ selectedValues: newSelectedValues, valueNameMap: newValueNameMap });
+    const newFoundItems = foundItems.map(fi => (
+      fi.value === value
+        ? new SelectedValue(fi.name, fi.value, !fi.checked)
+        : fi
+    ));
+
+    this.setState({
+      selectedValues: newSelectedValues,
+      valueNameMap: newValueNameMap,
+      foundItems: newFoundItems,
+    });
   }
 
-  onBlur() {
-    this.setState({ showPopupMenu: false });
+  onClickOutsideContainer(event) {
+    const { showPopupMenu } = this.state;
+    if (showPopupMenu
+        && this.containerRef.current
+        && !this.containerRef.current.contains(event.target)) {
+      this.setState({ showPopupMenu: false });
+    }
+  }
+
+  async getAndSortData(searchQuery) {
+    const { getData } = this.props;
+    const { selectedValues } = this.state;
+
+    return (await getData(searchQuery))
+      .map(foundItem => new SelectedValue(
+        foundItem.name,
+        foundItem.value,
+        selectedValues.some(sv => sv === foundItem.value),
+      ))
+      .sort(sortFunc);
   }
 
   restoreSelectedItems() {
     const { selectedValues, valueNameMap } = this.state;
 
-    return selectedValues.map(value => ({ value, name: valueNameMap.get(value) }));
+    return selectedValues
+      .map(value => ({ value, name: valueNameMap.get(value), checked: true }))
+      .sort(sortFunc);
   }
 
   render() {
@@ -89,7 +147,7 @@ export default class Select2 extends Component {
     const selectedText = prepareSelectedText(selectedValues, valueNameMap);
 
     return (
-      <Select2Container>
+      <Select2Container ref={this.containerRef}>
         <SelectedText value={selectedText} onClick={this.onClickSelectedText} />
         {showPopupMenu
           && (
@@ -100,14 +158,13 @@ export default class Select2 extends Component {
                 onChange={this.onSearchQueryChange}
               />
             )}
+
             itemsList={(
               <ItemsList
-                selectedValues={selectedValues}
                 items={foundItems}
                 onChange={this.onChangeItemSelection}
               />
             )}
-            onBlur={this.onBlur}
           />)}
       </Select2Container>
     );

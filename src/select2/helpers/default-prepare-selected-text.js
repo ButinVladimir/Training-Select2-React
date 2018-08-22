@@ -12,8 +12,8 @@ export default function defaultPrepareSelectedText(selectedValues, valueNameMap)
       throw new Error(`Value ${value} is not found`);
     }
 
-    return valueNameMap[value];
-  }).join(', ');
+    return valueNameMap.get(value);
+  }).sort().join(', ');
 
   return values;
 }
