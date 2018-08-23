@@ -11,6 +11,10 @@
   height: 20px;
 }
 
+.select2-item-list > li.checked {
+  background: #88f;
+}
+
 .items-not-found {
   color: #333;
   margin: 0 0 3px;

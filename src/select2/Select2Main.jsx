@@ -1,15 +1,10 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import Select2Container from './Select2Container';
-import defaultPrepareSelectedText from './helpers/default-prepare-selected-text';
-import DefaultSelectedText from './components/selected-text/DefaultSelectedText';
-import DefaultPopupMenu from './components/popup-menu/DefaultPopupMenu';
-import DefaultInputTextField from './components/input-text-field/DefaultInputTextField';
-import DefaultItemsList from './components/items-list/DefaultItemsList';
-import SelectedValue from './helpers/selected-value';
+import ListItemValue from './helpers/list-item-value';
 import sortFunc from './helpers/sort-func';
 
-export default class Select2 extends Component {
+export default class Select2Main extends Component {
   constructor(props) {
     super(props);
 
@@ -18,7 +13,6 @@ export default class Select2 extends Component {
       searchQuery: '',
       foundItems: [],
       selectedValues: [],
-      valueNameMap: new Map(),
     };
 
     this.onClickOutsideContainer = this.onClickOutsideContainer.bind(this);
@@ -56,6 +50,7 @@ export default class Select2 extends Component {
     if (this.throttleTimeout) {
       clearTimeout(this.throttleTimeout);
     }
+
     const newQueryId = Date.now();
     this.queryId = newQueryId;
 
@@ -73,27 +68,17 @@ export default class Select2 extends Component {
   }
 
   onChangeItemSelection(value, name) {
-    const { selectedValues, valueNameMap, foundItems } = this.state;
-    const newValueNameMap = new Map(valueNameMap);
-    let newSelectedValues;
+    const { performSelection, onSelect } = this.props;
+    const { selectedValues, foundItems } = this.state;
 
-    if (selectedValues.includes(value)) {
-      newSelectedValues = selectedValues.filter(v => v !== value);
-      newValueNameMap.delete(value);
-    } else {
-      newSelectedValues = selectedValues.concat(value);
-      newValueNameMap.set(value, name);
-    }
-
-    const newFoundItems = foundItems.map(fi => (
-      fi.value === value
-        ? new SelectedValue(fi.name, fi.value, !fi.checked)
-        : fi
-    ));
+    const {
+      newSelectedValues,
+      newFoundItems,
+    } = performSelection(value, name, selectedValues, foundItems);
+    onSelect(newSelectedValues.map(nsv => nsv.value));
 
     this.setState({
       selectedValues: newSelectedValues,
-      valueNameMap: newValueNameMap,
       foundItems: newFoundItems,
     });
   }
@@ -112,20 +97,18 @@ export default class Select2 extends Component {
     const { selectedValues } = this.state;
 
     return (await getData(searchQuery))
-      .map(foundItem => new SelectedValue(
+      .map(foundItem => new ListItemValue(
         foundItem.name,
         foundItem.value,
-        selectedValues.some(sv => sv === foundItem.value),
+        selectedValues.some(sv => sv.value === foundItem.value),
       ))
       .sort(sortFunc);
   }
 
   restoreSelectedItems() {
-    const { selectedValues, valueNameMap } = this.state;
+    const { selectedValues } = this.state;
 
-    return selectedValues
-      .map(value => ({ value, name: valueNameMap.get(value), checked: true }))
-      .sort(sortFunc);
+    return selectedValues.concat().sort(sortFunc);
   }
 
   render() {
@@ -135,16 +118,16 @@ export default class Select2 extends Component {
       popupMenu: PopupMenu,
       inputTextField: InputTextField,
       itemsList: ItemsList,
+      listItem,
     } = this.props;
     const {
       showPopupMenu,
       searchQuery,
       foundItems,
       selectedValues,
-      valueNameMap,
     } = this.state;
 
-    const selectedText = prepareSelectedText(selectedValues, valueNameMap);
+    const selectedText = prepareSelectedText(selectedValues);
 
     return (
       <Select2Container ref={this.containerRef}>
@@ -161,6 +144,7 @@ export default class Select2 extends Component {
 
             itemsList={(
               <ItemsList
+                listItem={listItem}
                 items={foundItems}
                 onChange={this.onChangeItemSelection}
               />
@@ -171,19 +155,14 @@ export default class Select2 extends Component {
   }
 }
 
-Select2.propTypes = {
+Select2Main.propTypes = {
+  onSelect: PropTypes.func.isRequired,
   getData: PropTypes.func.isRequired,
-  prepareSelectedText: PropTypes.func,
-  selectedText: PropTypes.func,
-  popupMenu: PropTypes.func,
-  inputTextField: PropTypes.func,
-  itemsList: PropTypes.func,
-};
-
-Select2.defaultProps = {
-  prepareSelectedText: defaultPrepareSelectedText,
-  selectedText: DefaultSelectedText,
-  popupMenu: DefaultPopupMenu,
-  inputTextField: DefaultInputTextField,
-  itemsList: DefaultItemsList,
+  prepareSelectedText: PropTypes.func.isRequired,
+  performSelection: PropTypes.func.isRequired,
+  selectedText: PropTypes.func.isRequired,
+  popupMenu: PropTypes.func.isRequired,
+  inputTextField: PropTypes.func.isRequired,
+  itemsList: PropTypes.func.isRequired,
+  listItem: PropTypes.func.isRequired,
 };

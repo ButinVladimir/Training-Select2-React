@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import ListItem from './ListItem';
 import './style.css';
 
 const convertItem = (item, onChange) => ({
@@ -12,9 +11,12 @@ const convertItem = (item, onChange) => ({
 });
 
 export default function DefaultItemsList({
+  listItem,
   items,
   onChange,
 }) {
+  const ListItem = listItem;
+
   const convertedItems = items
     .map(item => (
       <ListItem
@@ -39,6 +41,7 @@ export default function DefaultItemsList({
 }
 
 DefaultItemsList.propTypes = {
+  listItem: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
     name: PropTypes.string.isRequired,

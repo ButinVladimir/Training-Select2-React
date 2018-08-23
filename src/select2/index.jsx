@@ -1,3 +1,4 @@
-import Select2 from './Select2';
+import Select2Multiple from './Select2Multiple';
+import Select2Single from './Select2Single';
 
-export default Select2;
+export { Select2Multiple, Select2Single };
