@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultListItemSingle renders without crashing checked 1`] = `
+<li
+  className="checked"
+>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    name
+  </button>
+</li>
+`;
+
+exports[`DefaultListItemSingle renders without crashing unchecked 1`] = `
+<li
+  className=""
+>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    name
+  </button>
+</li>
+`;

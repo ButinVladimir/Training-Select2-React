@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultSelectedText fires onClick properly 1`] = `
+<input
+  className="select2-selected-text"
+  onClick={[Function]}
+  readOnly={true}
+  type="text"
+  value="value"
+/>
+`;
+
+exports[`DefaultSelectedText fires onClick properly 2`] = `
+<input
+  className="select2-selected-text"
+  onClick={[Function]}
+  readOnly={true}
+  type="text"
+  value="value"
+/>
+`;
+
+exports[`DefaultSelectedText renders without crashing 1`] = `
+<input
+  className="select2-selected-text"
+  onClick={[Function]}
+  readOnly={true}
+  type="text"
+  value="value"
+/>
+`;

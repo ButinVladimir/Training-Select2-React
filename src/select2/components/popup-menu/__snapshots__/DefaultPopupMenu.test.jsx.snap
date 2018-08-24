@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultPopupMenu renders without crashing 1`] = `
+<div
+  className="select2-popup-menu"
+>
+  <div
+    className="input-text-container"
+  >
+    <span>
+      Text field
+    </span>
+  </div>
+  <div>
+    <span>
+      Items list
+    </span>
+  </div>
+</div>
+`;

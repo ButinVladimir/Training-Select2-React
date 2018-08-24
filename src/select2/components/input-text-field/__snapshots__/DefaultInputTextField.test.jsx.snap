@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultInputTextField fires onChange properly 1`] = `
+<input
+  className="select2-input-text-field"
+  onChange={[Function]}
+  type="text"
+  value="123"
+/>
+`;
+
+exports[`DefaultInputTextField fires onChange properly 2`] = `
+<input
+  className="select2-input-text-field"
+  onChange={[Function]}
+  type="text"
+  value="123"
+/>
+`;
+
+exports[`DefaultInputTextField renders without crashing 1`] = `
+<input
+  className="select2-input-text-field"
+  onChange={[Function]}
+  type="text"
+  value="123"
+/>
+`;

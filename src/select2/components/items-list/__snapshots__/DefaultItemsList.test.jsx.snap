@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultItemsList renders without crashing with empty list and multiple selection 1`] = `
+<div
+  className="items-not-found"
+>
+  No matching items found
+</div>
+`;
+
+exports[`DefaultItemsList renders without crashing with empty list and single selection 1`] = `
+<div
+  className="items-not-found"
+>
+  No matching items found
+</div>
+`;
+
+exports[`DefaultItemsList renders without crashing with some items in list and multiple selection 1`] = `
+<ul
+  className="select2-item-list"
+>
+  <li
+    className=""
+  >
+    <label
+      htmlFor="select2-value 1"
+    >
+      <input
+        checked={false}
+        id="select2-value 1"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      name 1
+    </label>
+  </li>
+  <li
+    className="checked"
+  >
+    <label
+      htmlFor="select2-value 2"
+    >
+      <input
+        checked={true}
+        id="select2-value 2"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      name 2
+    </label>
+  </li>
+  <li
+    className="checked"
+  >
+    <label
+      htmlFor="select2-value 3"
+    >
+      <input
+        checked={true}
+        id="select2-value 3"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      name 3
+    </label>
+  </li>
+</ul>
+`;
+
+exports[`DefaultItemsList renders without crashing with some items in list and single selection 1`] = `
+<ul
+  className="select2-item-list"
+>
+  <li
+    className=""
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      name 1
+    </button>
+  </li>
+  <li
+    className="checked"
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      name 2
+    </button>
+  </li>
+  <li
+    className=""
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      name 3
+    </button>
+  </li>
+</ul>
+`;

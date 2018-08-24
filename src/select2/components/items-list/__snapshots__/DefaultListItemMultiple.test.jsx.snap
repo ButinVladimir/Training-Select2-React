@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultListItemMultiple renders without crashing checked 1`] = `
+<li
+  className="checked"
+>
+  <label
+    htmlFor="select2-value"
+  >
+    <input
+      checked={true}
+      id="select2-value"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    name
+  </label>
+</li>
+`;
+
+exports[`DefaultListItemMultiple renders without crashing unchecked 1`] = `
+<li
+  className=""
+>
+  <label
+    htmlFor="select2-value"
+  >
+    <input
+      checked={false}
+      id="select2-value"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    name
+  </label>
+</li>
+`;

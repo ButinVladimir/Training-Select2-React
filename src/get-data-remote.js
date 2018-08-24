@@ -3,10 +3,14 @@ export default function getDataRemote(query) {
     fetch(`https://restcountries.eu/rest/v2/name/${query}`, { method: 'GET' })
       .then(rawData => rawData.json())
       .then((jsonData) => {
-        resolve(jsonData.map(({ name, alpha3Code }) => ({
-          name,
-          value: alpha3Code,
-        })));
+        if (!(jsonData instanceof Array)) {
+          resolve([]);
+        } else {
+          resolve(jsonData.map(({ name, alpha3Code }) => ({
+            name,
+            value: alpha3Code,
+          })));
+        }
       })
       .catch((err) => {
         console.error(err);
