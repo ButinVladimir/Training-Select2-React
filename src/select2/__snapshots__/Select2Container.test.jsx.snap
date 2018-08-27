@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select2Container renders without crashing 1`] = `
+<div
+  className="select2-container"
+>
+  <div>
+    Child 1
+  </div>
+  <div>
+    Child 2
+  </div>
+</div>
+`;

@@ -10,14 +10,14 @@ describe('performSelectionSingle', () => {
     ];
     const selectedValues = [];
 
-    const { newFoundItems, newSelectedValues } = performSelectionSingle('value 2', 'name 2', selectedValues, foundItems);
+    const { newFoundItems, newSelectedItems } = performSelectionSingle('value 2', 'name 2', selectedValues, foundItems);
 
     expect(newFoundItems).toEqual([
       new ListItemValue('name 1', 'value 1', false),
       new ListItemValue('name 2', 'value 2', true),
       new ListItemValue('name 3', 'value 3', false),
     ]);
-    expect(newSelectedValues).toEqual([
+    expect(newSelectedItems).toEqual([
       new ListItemValue('name 2', 'value 2', true),
     ]);
   });
@@ -32,14 +32,14 @@ describe('performSelectionSingle', () => {
       new ListItemValue('name 2', 'value 2', true),
     ];
 
-    const { newFoundItems, newSelectedValues } = performSelectionSingle('value 2', 'name 2', selectedValues, foundItems);
+    const { newFoundItems, newSelectedItems } = performSelectionSingle('value 2', 'name 2', selectedValues, foundItems);
 
     expect(newFoundItems).toEqual([
       new ListItemValue('name 1', 'value 1', false),
       new ListItemValue('name 2', 'value 2', false),
       new ListItemValue('name 3', 'value 3', false),
     ]);
-    expect(newSelectedValues).toEqual([]);
+    expect(newSelectedItems).toEqual([]);
   });
 
   test('selects item when other item is selected', () => {
@@ -52,14 +52,14 @@ describe('performSelectionSingle', () => {
       new ListItemValue('name 1', 'value 1', true),
     ];
 
-    const { newFoundItems, newSelectedValues } = performSelectionSingle('value 2', 'name 2', selectedValues, foundItems);
+    const { newFoundItems, newSelectedItems } = performSelectionSingle('value 2', 'name 2', selectedValues, foundItems);
 
     expect(newFoundItems).toEqual([
       new ListItemValue('name 1', 'value 1', false),
       new ListItemValue('name 2', 'value 2', true),
       new ListItemValue('name 3', 'value 3', false),
     ]);
-    expect(newSelectedValues).toEqual([
+    expect(newSelectedItems).toEqual([
       new ListItemValue('name 2', 'value 2', true),
     ]);
   });

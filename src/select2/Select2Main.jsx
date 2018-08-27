@@ -12,7 +12,7 @@ export default class Select2Main extends Component {
       showPopupMenu: false,
       searchQuery: '',
       foundItems: [],
-      selectedValues: [],
+      selectedItems: [],
     };
 
     this.onClickOutsideContainer = this.onClickOutsideContainer.bind(this);
@@ -69,16 +69,16 @@ export default class Select2Main extends Component {
 
   onChangeItemSelection(value, name) {
     const { performSelection, onSelect } = this.props;
-    const { selectedValues, foundItems } = this.state;
+    const { selectedItems, foundItems } = this.state;
 
     const {
-      newSelectedValues,
+      newSelectedItems,
       newFoundItems,
-    } = performSelection(value, name, selectedValues, foundItems);
-    onSelect(newSelectedValues.map(nsv => nsv.value));
+    } = performSelection(value, name, selectedItems, foundItems);
+    onSelect(newSelectedItems.map(nsv => nsv.value));
 
     this.setState({
-      selectedValues: newSelectedValues,
+      selectedItems: newSelectedItems,
       foundItems: newFoundItems,
     });
   }
@@ -94,40 +94,40 @@ export default class Select2Main extends Component {
 
   async getAndSortData(searchQuery) {
     const { getData } = this.props;
-    const { selectedValues } = this.state;
+    const { selectedItems } = this.state;
 
     return (await getData(searchQuery))
       .map(foundItem => new ListItemValue(
         foundItem.name,
         foundItem.value,
-        selectedValues.some(sv => sv.value === foundItem.value),
+        selectedItems.some(sv => sv.value === foundItem.value),
       ))
       .sort(sortFunc);
   }
 
   restoreSelectedItems() {
-    const { selectedValues } = this.state;
+    const { selectedItems } = this.state;
 
-    return selectedValues.concat().sort(sortFunc);
+    return selectedItems.concat().sort(sortFunc);
   }
 
   render() {
     const {
       prepareSelectedText,
-      selectedText: SelectedText,
-      popupMenu: PopupMenu,
-      inputTextField: InputTextField,
-      itemsList: ItemsList,
-      listItem,
+      SelectedText,
+      PopupMenu,
+      InputTextField,
+      ItemsList,
+      ListItem,
     } = this.props;
     const {
       showPopupMenu,
       searchQuery,
       foundItems,
-      selectedValues,
+      selectedItems,
     } = this.state;
 
-    const selectedText = prepareSelectedText(selectedValues);
+    const selectedText = prepareSelectedText(selectedItems);
 
     return (
       <Select2Container ref={this.containerRef}>
@@ -144,7 +144,7 @@ export default class Select2Main extends Component {
 
             itemsList={(
               <ItemsList
-                listItem={listItem}
+                ListItem={ListItem}
                 items={foundItems}
                 onChange={this.onChangeItemSelection}
               />
@@ -160,9 +160,9 @@ Select2Main.propTypes = {
   getData: PropTypes.func.isRequired,
   prepareSelectedText: PropTypes.func.isRequired,
   performSelection: PropTypes.func.isRequired,
-  selectedText: PropTypes.func.isRequired,
-  popupMenu: PropTypes.func.isRequired,
-  inputTextField: PropTypes.func.isRequired,
-  itemsList: PropTypes.func.isRequired,
-  listItem: PropTypes.func.isRequired,
+  SelectedText: PropTypes.func.isRequired,
+  PopupMenu: PropTypes.func.isRequired,
+  InputTextField: PropTypes.func.isRequired,
+  ItemsList: PropTypes.func.isRequired,
+  ListItem: PropTypes.func.isRequired,
 };

@@ -5,7 +5,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import DefaultListItemMultiple from './DefaultListItemMultiple';
 
 describe('DefaultListItemMultiple', () => {
-  Enzyme.configure({ adapter: new Adapter() });
+  beforeAll(() => {
+    Enzyme.configure({ adapter: new Adapter() });
+  });
 
   test('renders without crashing unchecked', () => {
     const mockFn = jest.fn();

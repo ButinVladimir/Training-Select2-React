@@ -11,12 +11,10 @@ const convertItem = (item, onChange) => ({
 });
 
 export default function DefaultItemsList({
-  listItem,
+  ListItem,
   items,
   onChange,
 }) {
-  const ListItem = listItem;
-
   const convertedItems = items
     .map(item => (
       <ListItem
@@ -41,7 +39,7 @@ export default function DefaultItemsList({
 }
 
 DefaultItemsList.propTypes = {
-  listItem: PropTypes.func.isRequired,
+  ListItem: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
     name: PropTypes.string.isRequired,

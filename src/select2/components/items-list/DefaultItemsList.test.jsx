@@ -9,7 +9,7 @@ describe('DefaultItemsList', () => {
   test('renders without crashing with empty list and single selection', () => {
     const mockFn = jest.fn();
     const component = renderer.create(<DefaultItemsList
-      listItem={DefaultListItemSingle}
+      ListItem={DefaultListItemSingle}
       items={[]}
       onChange={mockFn}
     />);
@@ -22,7 +22,7 @@ describe('DefaultItemsList', () => {
   test('renders without crashing with empty list and multiple selection', () => {
     const mockFn = jest.fn();
     const component = renderer.create(<DefaultItemsList
-      listItem={DefaultListItemMultiple}
+      ListItem={DefaultListItemMultiple}
       items={[]}
       onChange={mockFn}
     />);
@@ -35,7 +35,7 @@ describe('DefaultItemsList', () => {
   test('renders without crashing with some items in list and single selection', () => {
     const mockFn = jest.fn();
     const component = renderer.create(<DefaultItemsList
-      listItem={DefaultListItemSingle}
+      ListItem={DefaultListItemSingle}
       items={[
         new ListItemValue('name 1', 'value 1', false),
         new ListItemValue('name 2', 'value 2', true),
@@ -52,7 +52,7 @@ describe('DefaultItemsList', () => {
   test('renders without crashing with some items in list and multiple selection', () => {
     const mockFn = jest.fn();
     const component = renderer.create(<DefaultItemsList
-      listItem={DefaultListItemMultiple}
+      ListItem={DefaultListItemMultiple}
       items={[
         new ListItemValue('name 1', 'value 1', false),
         new ListItemValue('name 2', 'value 2', true),

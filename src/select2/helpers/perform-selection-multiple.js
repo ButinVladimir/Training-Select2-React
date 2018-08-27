@@ -6,12 +6,12 @@ export default function performSelectionMultiple(
   selectedValues,
   foundItems,
 ) {
-  let newSelectedValues;
+  let newSelectedItems;
 
   if (selectedValues.some(sv => sv.value === value)) {
-    newSelectedValues = selectedValues.filter(sv => sv.value !== value);
+    newSelectedItems = selectedValues.filter(sv => sv.value !== value);
   } else {
-    newSelectedValues = selectedValues.concat(new ListItemValue(name, value, true));
+    newSelectedItems = selectedValues.concat(new ListItemValue(name, value, true));
   }
 
   const newFoundItems = foundItems.map(fi => (
@@ -21,7 +21,7 @@ export default function performSelectionMultiple(
   ));
 
   return {
-    newSelectedValues,
+    newSelectedItems,
     newFoundItems,
   };
 }

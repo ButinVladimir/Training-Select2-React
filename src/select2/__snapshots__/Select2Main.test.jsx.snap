@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select2Main changes selected item correctly 1`] = `
+<ForwardRef>
+  <div
+    className="select2-container"
+  >
+    <input
+      className="select2-selected-text"
+      onClick={[Function]}
+      readOnly={true}
+      type="text"
+      value="Alpha 1"
+    />
+  </div>
+</ForwardRef>
+`;
+
+exports[`Select2Main clears and fires timer once after text in input field has been changed twice 1`] = `
+<ForwardRef>
+  <div
+    className="select2-container"
+  >
+    <input
+      className="select2-selected-text"
+      onClick={[Function]}
+      readOnly={true}
+      type="text"
+      value="Click to select"
+    />
+    <div
+      className="select2-popup-menu"
+    >
+      <div
+        className="input-text-container"
+      >
+        <input
+          className="select2-input-text-field"
+          onChange={[Function]}
+          type="text"
+          value="alpha"
+        />
+      </div>
+      <div>
+        <div
+          className="items-not-found"
+        >
+          No matching items found
+        </div>
+      </div>
+    </div>
+  </div>
+</ForwardRef>
+`;
+
+exports[`Select2Main fires timer after text in input field has been changed 1`] = `
+<ForwardRef>
+  <div
+    className="select2-container"
+  >
+    <input
+      className="select2-selected-text"
+      onClick={[Function]}
+      readOnly={true}
+      type="text"
+      value="Click to select"
+    />
+    <div
+      className="select2-popup-menu"
+    >
+      <div
+        className="input-text-container"
+      >
+        <input
+          className="select2-input-text-field"
+          onChange={[Function]}
+          type="text"
+          value="a"
+        />
+      </div>
+      <div>
+        <div
+          className="items-not-found"
+        >
+          No matching items found
+        </div>
+      </div>
+    </div>
+  </div>
+</ForwardRef>
+`;
+
+exports[`Select2Main fires timer after text in input field has been cleared 1`] = `
+<ForwardRef>
+  <div
+    className="select2-container"
+  >
+    <input
+      className="select2-selected-text"
+      onClick={[Function]}
+      readOnly={true}
+      type="text"
+      value="name"
+    />
+    <div
+      className="select2-popup-menu"
+    >
+      <div
+        className="input-text-container"
+      >
+        <input
+          className="select2-input-text-field"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <ul
+          className="select2-item-list"
+        >
+          <li
+            className="checked"
+          >
+            <button
+              onClick={[Function]}
+              type="button"
+            >
+              name
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ForwardRef>
+`;
+
+exports[`Select2Main renders without crashing 1`] = `
+<ForwardRef>
+  <div
+    className="select2-container"
+  >
+    <input
+      className="select2-selected-text"
+      onClick={[Function]}
+      readOnly={true}
+      type="text"
+      value="Click to select"
+    />
+  </div>
+</ForwardRef>
+`;
+
+exports[`Select2Main shows popup properly when no items are selected 1`] = `
+<ForwardRef>
+  <div
+    className="select2-container"
+  >
+    <input
+      className="select2-selected-text"
+      onClick={[Function]}
+      readOnly={true}
+      type="text"
+      value="Click to select"
+    />
+    <div
+      className="select2-popup-menu"
+    >
+      <div
+        className="input-text-container"
+      >
+        <input
+          className="select2-input-text-field"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <div
+          className="items-not-found"
+        >
+          No matching items found
+        </div>
+      </div>
+    </div>
+  </div>
+</ForwardRef>
+`;
+
+exports[`Select2Main shows popup properly when some items are selected 1`] = `
+<ForwardRef>
+  <div
+    className="select2-container"
+  >
+    <input
+      className="select2-selected-text"
+      onClick={[Function]}
+      readOnly={true}
+      type="text"
+      value="name"
+    />
+    <div
+      className="select2-popup-menu"
+    >
+      <div
+        className="input-text-container"
+      >
+        <input
+          className="select2-input-text-field"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <ul
+          className="select2-item-list"
+        >
+          <li
+            className="checked"
+          >
+            <button
+              onClick={[Function]}
+              type="button"
+            >
+              name
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ForwardRef>
+`;

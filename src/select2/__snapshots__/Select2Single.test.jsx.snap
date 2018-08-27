@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select2Single renders without crashing 1`] = `
+<div
+  className="select2-container"
+>
+  <input
+    className="select2-selected-text"
+    onClick={[Function]}
+    readOnly={true}
+    type="text"
+    value="Click to select"
+  />
+</div>
+`;

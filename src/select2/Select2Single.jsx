@@ -22,18 +22,18 @@ Select2Single.propTypes = {
   onSelect: PropTypes.func.isRequired,
   getData: PropTypes.func.isRequired,
   prepareSelectedText: PropTypes.func,
-  selectedText: PropTypes.func,
-  popupMenu: PropTypes.func,
-  inputTextField: PropTypes.func,
-  itemsList: PropTypes.func,
-  listItem: PropTypes.func,
+  SelectedText: PropTypes.func,
+  PopupMenu: PropTypes.func,
+  InputTextField: PropTypes.func,
+  ItemsList: PropTypes.func,
+  ListItem: PropTypes.func,
 };
 
 Select2Single.defaultProps = {
   prepareSelectedText: defaultPrepareSelectedText,
-  selectedText: DefaultSelectedText,
-  popupMenu: DefaultPopupMenu,
-  inputTextField: DefaultInputTextField,
-  itemsList: DefaultItemsList,
-  listItem: DefaultListItemSingle,
+  SelectedText: DefaultSelectedText,
+  PopupMenu: DefaultPopupMenu,
+  InputTextField: DefaultInputTextField,
+  ItemsList: DefaultItemsList,
+  ListItem: DefaultListItemSingle,
 };

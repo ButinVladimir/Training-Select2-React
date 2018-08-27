@@ -5,7 +5,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import DefaultListItemSingle from './DefaultListItemSingle';
 
 describe('DefaultListItemSingle', () => {
-  Enzyme.configure({ adapter: new Adapter() });
+  beforeAll(() => {
+    Enzyme.configure({ adapter: new Adapter() });
+  });
 
   test('renders without crashing unchecked', () => {
     const mockFn = jest.fn();

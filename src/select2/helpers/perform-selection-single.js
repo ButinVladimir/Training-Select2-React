@@ -6,18 +6,18 @@ export default function performSelectionSingle(
   selectedValues,
   foundItems,
 ) {
-  let newSelectedValues;
+  let newSelectedItems;
   let newFoundItems;
 
   if (selectedValues.some(sv => sv.value === value)) {
-    newSelectedValues = [];
+    newSelectedItems = [];
     newFoundItems = foundItems.map(fi => (
       fi.value === value
         ? new ListItemValue(fi.name, fi.value, false)
         : fi
     ));
   } else {
-    newSelectedValues = [new ListItemValue(name, value, true)];
+    newSelectedItems = [new ListItemValue(name, value, true)];
     newFoundItems = foundItems.map((fi) => {
       if (fi.value === value) {
         return new ListItemValue(fi.name, fi.value, true);
@@ -32,7 +32,7 @@ export default function performSelectionSingle(
   }
 
   return {
-    newSelectedValues,
+    newSelectedItems,
     newFoundItems,
   };
 }
