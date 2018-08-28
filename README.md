@@ -1,5 +1,5 @@
 Select 2 copy training project written with React and Enzyme.
-WYSIWYG web page editor training project written with typescript, bootstrap, jquery and webpack. Before using you need following:
+Before using you need following:
 
 1. Install NodeJS and npm
 2. Install all dependencies
