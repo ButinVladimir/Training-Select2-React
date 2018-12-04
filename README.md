@@ -1,4 +1,4 @@
-# Select 2 copy training project written with React, Jest and Enzyme.
+# Select 2 copy training project written using React, Jest and Enzyme.
 ## Before using you need following:
 
 1. Install NodeJS and npm
